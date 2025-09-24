@@ -1,0 +1,18 @@
+Ao usarmos dois pontos para invocar uma função, estamos automaticamente injetando quem chama a função como primeiro parâmetro da mesma.
+
+É uma função especial que é chamada assim que uma instância de um objeto é criada, e serve para definir propriedades inicias à mesma.
+
+nil nil nil
+
+local class = require("middleclass") local Banana = class("Banana")
+
+Existe um erro na função abaixo. Como podemos resolve-lo? function Person.setAge(age) self.age = age end
+Há mais de uma alternativa correta.
+
+100
+
+Bibliotecas =>
+ansicolorsx
+rxi/json.lua
+kikito/inspect.lua
+midleclass

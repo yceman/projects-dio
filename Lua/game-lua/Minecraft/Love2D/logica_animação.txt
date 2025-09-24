@@ -1,0 +1,41 @@
+local obsidianAnim = {
+    image = nil,
+    quadAtual = 1,
+    quadros = {},
+    tempo = 0,
+    duracao = 0.2  -- tempo entre quadros (segundos)
+}
+
+function love.load()
+    -- Carrega a imagem da animação
+    obsidianAnim.image = love.graphics.newImage("obsidian_anim.png")
+
+    -- Divide em 4 quadros de 64x64
+    for i = 0, 3 do
+        local quad = love.graphics.newQuad(i * 64, 0, 64, 64, obsidianAnim.image:getDimensions())
+        table.insert(obsidianAnim.quadros, quad)
+    end
+end
+
+function love.update(dt)
+    -- Atualiza a animação do obsidian se ele estiver como resultado
+    if resultado == "Obsidian" then
+        obsidianAnim.tempo = obsidianAnim.tempo + dt
+        if obsidianAnim.tempo >= obsidianAnim.duracao then
+            obsidianAnim.tempo = 0
+            obsidianAnim.quadAtual = (obsidianAnim.quadAtual % #obsidianAnim.quadros) + 1
+        end
+    end
+end
+
+function love.draw()
+    -- Mostra a animação caso obsidian seja o resultado
+    if resultado == "Obsidian" then
+        love.graphics.draw(
+            obsidianAnim.image,
+            obsidianAnim.quadros[obsidianAnim.quadAtual],
+            50, 300  -- posição na tela
+        )
+        love.graphics.print("? Obsidian descoberto!", 50, 370)
+    end
+end

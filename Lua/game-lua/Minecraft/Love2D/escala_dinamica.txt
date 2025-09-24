@@ -1,0 +1,52 @@
+local obsidianIcon = {
+    image = nil,
+    x = 300,
+    y = 250,
+    tempo = 0,
+    escala = 1
+}
+
+local descobriuObsidian = false
+
+function love.load()
+    obsidianIcon.image = love.graphics.newImage("obsidian.png")  -- ícone fixo
+    love.graphics.setFont(love.graphics.newFont(18))
+end
+
+function love.update(dt)
+    if descobriuObsidian then
+        -- Atualiza tempo para pulsação
+        obsidianIcon.tempo = obsidianIcon.tempo + dt
+        obsidianIcon.escala = 1 + 0.2 * math.sin(obsidianIcon.tempo * 4)
+    end
+end
+
+function love.draw()
+    love.graphics.print("Clique para descobrir Obsidian", 50, 50)
+
+    -- Desenha o ícone com escala animada
+    local img = obsidianIcon.image
+    local w, h = img:getWidth(), img:getHeight()
+    local sx, sy = obsidianIcon.escala, obsidianIcon.escala
+
+    love.graphics.draw(
+        img,
+        obsidianIcon.x,
+        obsidianIcon.y,
+        0,     -- rotação
+        sx,    -- escala X
+        sy,    -- escala Y
+        w/2,   -- origem X
+        h/2    -- origem Y
+    )
+
+    if descobriuObsidian then
+        love.graphics.print("?? Obsidian descoberta!", 50, 100)
+    end
+end
+
+function love.mousepressed(x, y, button)
+    if button == 1 then
+        descobriuObsidian = true
+    end
+end

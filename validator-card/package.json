@@ -1,0 +1,26 @@
+{
+  "name": "validator-card",
+  "version": "1.0.0",
+  "description": "Card Validator",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yceman/validator-card.git"
+  },
+  "keywords": [
+    "Validator",
+    "Express",
+    "Node",
+    "Credit",
+    "Card"
+  ],
+  "author": "Marcos Morais",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yceman/validator-card/issues"
+  },
+  "homepage": "https://github.com/yceman/validator-card#readme"
+}

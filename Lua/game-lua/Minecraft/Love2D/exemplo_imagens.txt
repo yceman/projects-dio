@@ -1,0 +1,65 @@
+-- Tabela para armazenar os materiais
+local materiais = {
+    Agua = {imagem = nil, x = 50, y = 50, valor = 100},
+    Lava = {imagem = nil, x = 200, y = 50, valor = 500},
+    Obsidian = {imagem = nil, x = 350, y = 50, valor = 600}
+}
+
+local selecionados = {}
+local resultado = nil
+
+function love.load()
+    love.window.setTitle("Combinações Visuais")
+    love.graphics.setFont(love.graphics.newFont(16))
+
+    -- Carregar imagens
+    materiais.Agua.imagem = love.graphics.newImage("agua.png")
+    materiais.Lava.imagem = love.graphics.newImage("lava.png")
+    materiais.Obsidian.imagem = love.graphics.newImage("obsidian.png")
+end
+
+-- Detectar clique do mouse
+function love.mousepressed(x, y, button)
+    if button == 1 then
+        for nome, dados in pairs(materiais) do
+            local img = dados.imagem
+            local w, h = img:getWidth(), img:getHeight()
+            if x > dados.x and x < dados.x + w and y > dados.y and y < dados.y + h then
+                table.insert(selecionados, nome)
+                if #selecionados == 2 then
+                    calcularResultado()
+                end
+            end
+        end
+    end
+end
+
+function calcularResultado()
+    local v1 = materiais[selecionados[1]].valor
+    local v2 = materiais[selecionados[2]].valor
+    local soma = v1 + v2
+
+    for nome, dados in pairs(materiais) do
+        if dados.valor == soma then
+            resultado = nome
+            break
+        end
+    end
+
+    selecionados = {} -- limpar seleção para próxima tentativa
+end
+
+function love.draw()
+    love.graphics.print("Clique nos materiais para combinar:", 50, 20)
+
+    -- Desenhar os ícones
+    for nome, dados in pairs(materiais) do
+        love.graphics.draw(dados.imagem, dados.x, dados.y)
+        love.graphics.print(nome, dados.x, dados.y + dados.imagem:getHeight() + 5)
+    end
+
+    -- Mostrar resultado
+    if resultado then
+        love.graphics.print("?? Resultado: " .. resultado, 50, 150)
+    end
+end

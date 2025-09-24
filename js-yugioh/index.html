@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
+	<link rel="icon" type="image/x-icon" href="src/assets/favicon/Favicon.ico">
+	<link rel="stylesheet" type="text/css" href="src/styles/containers_and_frames.css">
+	<link rel="stylesheet" type="text/css" href="src/styles/main.css">
+	<title>Yu-Gi-Oh</title>
+</head>
+<body>
+	<button id="toggle-mute">🔊 Som Ligado</button>
+	<label for="sfx-volume">🔊 Volume FX:</label>
+	<input type="range" id="sfx-volume" min="0" max="1" step="0.01" value="1">
+	<audio id="sfx-card" src="" hidden></audio>
+	<audio id="sfx-legendary" src="sons/cartas/swoosh-lendario.mp3" hidden></audio>
+	<audio id="sfx-attack" src="sons/ataque.mp3"></audio>
+	<audio id="sfx-draw" src="sons/comprar.mp3"></audio>
+	<audio id="bgm" loop>
+		<source src="src/assets/audios/egyptian_duel.mp3" type="audio/mp3">
+		Este navegador não tem suporte de audio
+	</audio>
+	<div class="bg-video">
+		<video class="video" autoplay loop muted>
+			<source src="src/assets/video/yugi.mp4" type="video/mp4">
+			Este navegador não tem suporte de video
+		</video>
+	</div>
+
+	<!--<div class="container">
+		<div class="container__left framed-golden-2">
+			<div class="score_box"></div>
+		</div>
+	</div>-->
+
+	<div class="container">
+		<div class="container__left framed-golden-2">
+			<div class="score_box frame">
+				<span id="score_points">Win : 0 | Lose: 0</span>
+			</div>
+			<div class="menu_avatar">
+				<img id="card-image">
+			</div>
+			<div class="card_details frame">
+				<p id="card-name">a</p>
+				<p id="card-type">a</p>
+			</div>
+		</div>
+		<div class="container__right">
+			<div class="card-box__container">
+				<div id="computer-cards" class="card-box framed"></div>
+				<div class="card-versus">
+					<div class="versus-top">
+						<div class="card-infield">
+							<img id="player-field-card" height="180px" width="125px">
+						</div>
+						<img src="src/assets/icons/millenium2.png" height="100px">
+						<div class="card-infield">
+							<img id="computer-field-card" height="180px" width="125px">
+						</div>
+					</div>
+					<div class="versus-bottom">
+						<button id="next-duel" class="rpgui-button" onclick="resetDuel">Win</button>
+					</div>
+				</div>
+				<div id="player-cards" class="card-box framed"></div>
+			</div>
+		</div>
+	</div>
+	<!-- SCRIPTS -->
+	<script src="src/assets/js/jquery-3.7.1.min.js" type="text/javascript"></script>
+	<script src="src/scripts/engine.js" type="text/javascript"></script>
+</body>
+</html>
